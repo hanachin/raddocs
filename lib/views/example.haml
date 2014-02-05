@@ -100,7 +100,29 @@
       - if request["response_status"]
         .response
           %h3 Response
-
+          - if example["response_fields"]["data"].count > 0
+            %section.response_fields
+              %h4 ResponseFields
+              %table.parameters
+                %thead
+                  %tr
+                    %th Name
+                    %th Description
+                    - example["response_fields"]["extra_keys"].each do |key|
+                      %th= key
+                %tbody
+                  - example["response_fields"]["data"].each do |param|
+                    %tr.parameter
+                      %td
+                        - if param["scope"]
+                          %span.name #{param['scope']}[#{param["name"]}]
+                        - else
+                          %span.name= param["name"]
+                      %td
+                        %span.description= param["description"]
+                      - example["response_fields"]["extra_keys"].each do |key|
+                        %td
+                          %span.extras= param[key]
           %section.headers
             %h4 Headers
             %pre.headers
