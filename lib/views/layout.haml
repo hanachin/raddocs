@@ -2,7 +2,7 @@
 %html
   %head
     %meta{:charset=>"utf-8"}
-    %title Raddocs
+    %title= api_name
     - css_files.each do |file|
       %link{:rel => "stylesheet", :href => file}
     %script(src="#{url_location}/js/jquery-1-7-2.js")
